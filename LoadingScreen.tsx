@@ -90,7 +90,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
         className="text-4xl md:text-6xl font-black text-center mb-8 rainbow-text"
         style={{ fontFamily: 'Fredoka One, cursive' }}
       >
-        Loading ORANG GANtenggg 🥳🥳🥳😍😍🥰🥰
+        Loading HAdiAh OrAnG GanTEnG 🥵🤭🤭😍🥰
       </motion.h1>
 
       {/* Progress Bar */}
