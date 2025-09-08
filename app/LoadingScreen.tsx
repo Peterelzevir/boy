@@ -39,8 +39,8 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
             key={i}
             className="absolute text-pink-300 text-2xl"
             initial={{ 
-              x: Math.random() * window.innerWidth,
-              y: window.innerHeight + 50,
+              x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : Math.random() * 800,
+              y: typeof window !== 'undefined' ? window.innerHeight + 50 : 600,
               opacity: 0.7
             }}
             animate={{
@@ -90,7 +90,7 @@ export default function LoadingScreen({ onLoadingComplete }: LoadingScreenProps)
         className="text-4xl md:text-6xl font-black text-center mb-8 rainbow-text"
         style={{ fontFamily: 'Fredoka One, cursive' }}
       >
-        Loading HAdiAh OrAnG GanTEnG 🥵🤭🤭😍🥰
+        Loading ORANG GANtenggg 🥳🥳🥳😍😍🥰🥰
       </motion.h1>
 
       {/* Progress Bar */}
