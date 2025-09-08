@@ -30,8 +30,8 @@ export default function Home() {
     <motion.div
       className="absolute text-red-500 text-2xl pointer-events-none"
       initial={{ 
-        x: Math.random() * window.innerWidth,
-        y: window.innerHeight + 50,
+        x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : 500,
+        y: typeof window !== 'undefined' ? window.innerHeight + 50 : 600,
         opacity: 0
       }}
       animate={{
@@ -142,7 +142,6 @@ export default function Home() {
                   onPlay={() => setIsPlaying(true)}
                   onPause={() => setIsPlaying(false)}
                 >
-                  {/* Replace 'your-video.mp4' with your actual video file name */}
                   <source src="/your-video.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -187,10 +186,10 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => alert("YESS! SUPER GANTENG BGT KM SUKA KAN! 😍✨")}
+                onClick={() => alert("YESS! SUPER GANTENG! 😍✨")}
                 className="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold text-xl rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-white"
               >
-                GAnTEnG BGT KaaNNNN! 😍
+                GANTENG BGT NJIR! 😍
               </motion.button>
               
               <motion.button
@@ -199,7 +198,7 @@ export default function Home() {
                 onClick={() => alert("Bohong! Pasti ganteng kok! 🥰💖")}
                 className="px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold text-xl rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-white"
               >
-                ENGGAK 🥰🤭
+                ENGGAK 🥵🤭
               </motion.button>
             </motion.div>
 
@@ -215,7 +214,7 @@ export default function Home() {
                 transition={{ duration: 1.5, repeat: Infinity }}
                 className="text-2xl font-bold text-white mb-2"
               >
-                Level Ganteng Meter 🤭📊
+                Level Ganteng 😋🤭
               </motion.h3>
               <motion.div
                 animate={{ 
@@ -230,8 +229,8 @@ export default function Home() {
                 transition={{ duration: 1, repeat: Infinity }}
                 className="text-xl text-white font-bold"
               >
-                🔥 GAnTENG AKu NgalAhin KoRea KaMU 🔥
-              </p>
+                🔥 NJIR GANTENG BGT COK 🥰🤭😋! 🔥
+              </motion.p>
             </motion.div>
 
             {/* Footer */}
