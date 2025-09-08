@@ -7,7 +7,28 @@ import LoadingScreen from './LoadingScreen'
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 })
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    // Set window size after component mounts (client-side only)
+    if (typeof window !== 'undefined') {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+
+      const handleResize = () => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight
+        })
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const handlePlayVideo = () => {
     if (videoRef.current) {
@@ -25,13 +46,13 @@ export default function Home() {
     setIsLoading(false)
   }
 
-  // Floating hearts animation
+  // Floating hearts animation - safe for SSR
   const FloatingHeart = ({ delay }: { delay: number }) => (
     <motion.div
       className="absolute text-red-500 text-2xl pointer-events-none"
       initial={{ 
-        x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : 500,
-        y: typeof window !== 'undefined' ? window.innerHeight + 50 : 600,
+        x: windowSize.width > 0 ? Math.random() * windowSize.width : 500,
+        y: windowSize.height > 0 ? windowSize.height + 50 : 600,
         opacity: 0
       }}
       animate={{
@@ -64,8 +85,8 @@ export default function Home() {
           transition={{ duration: 1 }}
           className="min-h-screen relative overflow-hidden bg-gradient-to-br from-purple-900 via-pink-900 via-red-900 to-orange-900"
         >
-          {/* Floating Hearts Background */}
-          {[...Array(15)].map((_, i) => (
+          {/* Floating Hearts Background - only render after window size is set */}
+          {windowSize.width > 0 && [...Array(15)].map((_, i) => (
             <FloatingHeart key={i} delay={i * 0.5} />
           ))}
 
@@ -189,7 +210,7 @@ export default function Home() {
                 onClick={() => alert("YESS! SUPER GANTENG! 😍✨")}
                 className="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold text-xl rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-white"
               >
-                GANTENG BGT NJIR! 😍
+                GANTENG BGT! AH AH 😋😍
               </motion.button>
               
               <motion.button
@@ -198,7 +219,7 @@ export default function Home() {
                 onClick={() => alert("Bohong! Pasti ganteng kok! 🥰💖")}
                 className="px-8 py-4 bg-gradient-to-r from-red-500 to-pink-500 text-white font-bold text-xl rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-white"
               >
-                ENGGAK 🥵🤭
+                ENGGAK ( ga logis gantengnya njir ) 🤭
               </motion.button>
             </motion.div>
 
@@ -214,7 +235,7 @@ export default function Home() {
                 transition={{ duration: 1.5, repeat: Infinity }}
                 className="text-2xl font-bold text-white mb-2"
               >
-                Level Ganteng 😋🤭
+                Level Ganteng Meter 📊
               </motion.h3>
               <motion.div
                 animate={{ 
@@ -229,7 +250,7 @@ export default function Home() {
                 transition={{ duration: 1, repeat: Infinity }}
                 className="text-xl text-white font-bold"
               >
-                🔥 NJIR GANTENG BGT COK 🥰🤭😋! 🔥
+                🔥 GaNTENg BaNGEt NJIRR 😋🤭 🔥
               </motion.p>
             </motion.div>
 
